@@ -1,5 +1,5 @@
-import json
 import tomllib
+from datetime import datetime
 
 import ovh
 import whatismyip as whatismyip
@@ -18,7 +18,6 @@ def main():
             raise RuntimeError("No zones found for {subdomain}.{zoneName}".format(**conf["dns"]))
         case 1:
             zone_id = result[0]
-            print(f"Zone id: {zone_id}")
         case _:
             raise RuntimeError("Too many zones found for {subdomain}.{zoneName}".format(**conf["dns"]))
 
@@ -26,8 +25,10 @@ def main():
     target = client.get(zone_url)["target"]
     current_ip = whatismyip.whatismyipv4()
     if target != current_ip:
-        print(f"{target} != {current_ip}")
+        print(f"{datetime.now().isoformat()} - {target} != {current_ip}; upgrading")
         client.put(zone_url, target=current_ip, subDomain=conf["dns"]["subdomain"], ttl=conf["dns"]["ttl"])
+    else:
+        print(f"{datetime.now().isoformat()} - zone correctly points to {current_ip}")
 
 
 if __name__ == '__main__':
