@@ -1,0 +1,43 @@
+[project]
+name = "ovhia"
+version = "0.1.0"
+description = "Dynamic DNS updater for OVH domains"
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [
+    { name = "Iacopo", email = "your-email@example.com" }
+]
+keywords = ["dns", "ovh", "dynamic-dns", "networking"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Internet :: Name Service (DNS)",
+    "Topic :: System :: Networking",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+    "ovh~=1.2.0",
+    "whatismyip",
+    "dnspython",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pre-commit",
+]
+
+[project.scripts]
+ovhia = "net.iap.ovhia.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.12.3",
+    "pre-commit>=3.0.0",
+]
