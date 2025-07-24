@@ -1,0 +1,17 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.3
+    hooks:
+      - id: ruff
+        args:
+          - --select
+          - UP,I,F,E,T,G,PIE
+          - --ignore
+          - E501,UP046
+          - --fix
+          - --target-version=py313
+        stages: [pre-commit]
+        files: ^src/
+      - id: ruff-format
+        stages: [pre-commit]
+        files: ^(src|test)/
