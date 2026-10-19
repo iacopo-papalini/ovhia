@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "ovhia"
 version = "0.1.0"
@@ -20,7 +24,6 @@ classifiers = [
 
 dependencies = [
     "ovh~=1.2.0",
-    "whatismyip",
     "dnspython",
 ]
 
@@ -36,8 +39,8 @@ ovhia = "net.iap.ovhia.__main__:main"
 [tool.setuptools]
 package-dir = {"" = "src"}
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "ruff>=0.12.3",
     "pre-commit>=3.0.0",
 ]

@@ -30,7 +30,17 @@ uv sync
    zoneName="your_domain.com"
    subdomains=["subdomain1", "subdomain2"]
    ttl=60
+
+   # optional
+   [notify]
+   reminder_hours=2         # re-alert interval while failing
+   state_file="state.json"  # relative to conf.toml
    ```
+
+### Notifications
+Emails are sent when public IP changes are applied, on the first failed run (FAILING),
+every `reminder_hours` while still failing (STILL FAILING), and once a run succeeds again (RECOVERED).
+Failure streaks are tracked in `state.json`.
 
 ## Running the Project
 

@@ -49,4 +49,5 @@ Thumbs.db
 # Project specific
 *.log
 conf.toml
-
+state.json
+state.tmp
